@@ -172,6 +172,107 @@ function displayWeatherForecast(coordinates) {
 
 function displayForecast(response) {
   console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastDay1 = document.querySelector("#forecast-day-1");
+  let forecastDay2 = document.querySelector("#forecast-day-2");
+  let forecastDay3 = document.querySelector("#forecast-day-3");
+  let forecastDay4 = document.querySelector("#forecast-day-4");
+  let forecastDay5 = document.querySelector("#forecast-day-5");
+  let forecastDescription = forecast.weather[0].main;
+  console.log(forecastDescription);
+  forecast
+    .forEach(function (forecastDay, index) {
+      if (index < 2) {
+        forecastDay1.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+       <div class="weather-forecast-temperatures">
+       <img src="images/cloudy.svg"
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+      } else {
+        if (index < 3) {
+          forecastDay2.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+        } else {
+          if (index < 4) {
+            forecastDay3.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+          } else {
+            if (index < 5) {
+              forecastDay4.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+            } else {
+              if (index < 6) {
+                forecastDay5.innerHTML = `<div class="weather-forecast-date">
+      ${formatDay(forecastDay.dt)}
+      </div>
+       <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> 
+          ${Math.round(forecastDay.temp.max)}°C 
+          </span>
+          <span class="weather-forecast-temperature-min"> 
+          ${Math.round(forecastDay.temp.min)}°C </span>
+        </div>`;
+              }
+            }
+          }
+        }
+      }
+    })
+    .then(displayForecastEmoji);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  return days[day];
+}
+
+function displayForecastEmoji() {
+  let emoji1 = document.querySelector("#emoji-forecast-1");
+  let emoji2 = document.querySelector("#emoji-forecast-2");
+  let emoji3 = document.querySelector("#emoji-forecast-3");
+  let emoji4 = document.querySelector("#emoji-forecast-4");
+  let emoji5 = document.querySelector("#emoji-forecast-5");
 }
 
 function convertToFarenheit(event) {
