@@ -67,6 +67,10 @@ div.col-6 {
   width: 70px;
 }
 
+#warning-icon {
+  width: 40px;
+}
+
 #forecasts {
   font-size: 20px;
   text-align: center;
@@ -107,4 +111,18 @@ p {
 #github-repository:hover {
   text-decoration: underline;
   color: #ad2e65;
+}
+
+.weather-forecast-temperature-max {
+  color: #ff487e;
+  font-size: smaller;
+}
+
+.weather-forecast-temperature-min {
+  color: #56a0ee;
+  font-size: smaller;
+}
+
+#title-image {
+  width: 100px;
 }

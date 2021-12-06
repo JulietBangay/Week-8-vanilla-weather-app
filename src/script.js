@@ -94,6 +94,7 @@ function weatherIconDisplay() {
             } else {
               document.getElementById("weather-icon").src =
                 "images/warning.svg";
+              document.getElementById("weather-icon").id = "warning-icon";
             }
           }
         }
