@@ -50,7 +50,8 @@ function openingPageCurrentLocation() {
     axios
       .get(weatherApiUrl)
       .then(displayWeatherCondition)
-      .then(weatherIconDisplay);
+      .then(weatherIconDisplay)
+      .then(displayWeatherForecast);
     function displayWeatherCondition(response) {
       console.log(response);
       celsiusTemperature = Math.round(response.data.main.temp);
@@ -66,6 +67,7 @@ function openingPageCurrentLocation() {
       windspeed.innerHTML = Math.round(response.data.wind.speed);
       let description = document.querySelector("#weather-description");
       description.innerHTML = response.data.weather[0].main;
+      displayWeatherForecast(response.data.coord);
     }
   }
 }
@@ -116,10 +118,7 @@ function getCurrentLocation(event) {
 function searchCurrentLocation(position) {
   let apiKey = "f85062d84430cd35a6b8db439bd6c8f6";
   let weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
-  axios
-    .get(weatherApiUrl)
-    .then(displayWeatherCondition)
-    .then(weatherIconDisplay);
+  axios.get(weatherApiUrl).then(displayWeatherCondition);
   function displayWeatherCondition(response) {
     console.log(response);
     celsiusTemperature = Math.round(response.data.main.temp);
@@ -135,6 +134,8 @@ function searchCurrentLocation(position) {
     windspeed.innerHTML = Math.round(response.data.wind.speed);
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
+
+    displayWeatherForecast(response.data.coord);
   }
 }
 
@@ -159,7 +160,12 @@ function searchCity(event) {
     windspeed.innerHTML = Math.round(response.data.wind.speed);
     let description = document.querySelector("#weather-description");
     description.innerHTML = response.data.weather[0].main;
+    displayWeatherForecast(response.data.coord);
   }
+}
+
+function displayWeatherForecast(coordinates) {
+  console.log(coordinates);
 }
 
 function convertToFarenheit(event) {
